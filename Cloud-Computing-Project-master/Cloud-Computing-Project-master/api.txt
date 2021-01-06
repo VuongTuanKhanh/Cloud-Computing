@@ -1,0 +1,33 @@
+[
+    {
+        "id": 2,
+        "firstName": "Võ",
+        "lastName": "Trường",
+        "email": "dp1998@gmail.com",
+        "math": 1.2,
+        "physic": 2.3,
+        "chemistry": 3.4
+    }
+]
+
+port:8089
+
+get all student
+GET
+/docker-api/students
+
+get a student by Id
+GET
+/docker-api/students/{id}
+
+add a student
+POST (truyền 1 object student)
+/docker-api/students
+
+update a student
+PUT (truyền 1 object student)
+/docker-api/students
+
+delete a students
+DELETE (truyền id)
+/docker-api/students/{id}

@@ -1,0 +1,10 @@
+{
+  "version": 2,
+  "dgSpecHash": "5RJOG87fdB4MkairsZqX+1+UmSvhhYZL/QND1RC2DbBFwWwhQIDJC6SkJ/Aeyw5jP0T1ELRjGfcUZIsYlA9aug==",
+  "success": true,
+  "projectFilePath": "C:\\Users\\KT\\Desktop\\Cloud-Computing-Project-master\\Cloud-Computing-Project-master\\ClassLibrary1\\ClassLibrary1.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\KT\\.nuget\\packages\\microsoft.aspnetcore.app.ref\\3.1.10\\microsoft.aspnetcore.app.ref.3.1.10.nupkg.sha512"
+  ],
+  "logs": []
+}

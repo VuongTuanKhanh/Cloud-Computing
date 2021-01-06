@@ -1,0 +1,12 @@
+{
+  "version": 2,
+  "dgSpecHash": "Cj0tVN/LQDDoJQuS8RKwn3uGoUx7kMglIazYXWVUkvIbLehTyAaFx+xnBhW6EciQRJPPDJP4ZyjhTkqijzR+xw==",
+  "success": true,
+  "projectFilePath": "C:\\Users\\KT\\Desktop\\Cloud-Computing-Project-master\\Cloud-Computing-Project-master\\WebApplication1\\WebApplication1.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\KT\\.nuget\\packages\\microsoft.visualstudio.azure.containers.tools.targets\\1.10.9\\microsoft.visualstudio.azure.containers.tools.targets.1.10.9.nupkg.sha512",
+    "C:\\Users\\KT\\.nuget\\packages\\microsoft.aspnetcore.app.ref\\3.1.10\\microsoft.aspnetcore.app.ref.3.1.10.nupkg.sha512",
+    "C:\\Users\\KT\\.nuget\\packages\\microsoft.netcore.app.host.win-x64\\3.1.10\\microsoft.netcore.app.host.win-x64.3.1.10.nupkg.sha512"
+  ],
+  "logs": []
+}

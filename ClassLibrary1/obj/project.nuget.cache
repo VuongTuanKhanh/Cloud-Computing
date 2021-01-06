@@ -1,0 +1,10 @@
+{
+  "version": 2,
+  "dgSpecHash": "kL9cTrj1IozxiV9QxaCizqQ9q7iJBI/yVD3gRJ55Hvy8NBF7YDgzd4ic6ZRtj2sSLls4ikWV4WymOtyaEWEloQ==",
+  "success": true,
+  "projectFilePath": "C:\\Users\\KT\\Desktop\\WebApplication1\\ClassLibrary1\\ClassLibrary1.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\KT\\.nuget\\packages\\microsoft.aspnetcore.app.ref\\3.1.10\\microsoft.aspnetcore.app.ref.3.1.10.nupkg.sha512"
+  ],
+  "logs": []
+}

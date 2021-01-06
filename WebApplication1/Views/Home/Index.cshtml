@@ -1,0 +1,353 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+<style>
+
+* {
+    margin: 0px;
+    padding: 0px;
+    box-sizing: border-box;
+}
+
+body, html {
+    height: 100%;
+    font-family: sans-serif;
+    text-align: center;
+}
+
+a {
+    margin: 0px;
+    transition: all 0.4s;
+    -webkit-transition: all 0.4s;
+    -o-transition: all 0.4s;
+    -moz-transition: all 0.4s;
+}
+
+    a:focus {
+        outline: none !important;
+    }
+
+    a:hover {
+        text-decoration: none;
+    }
+
+
+h1, h2, h3, h4, h5, h6 {
+    margin: 0px;
+}
+
+p {
+    margin: 0px;
+}
+
+ul, li {
+    margin: 0px;
+    list-style-type: none;
+}
+
+input {
+    display: block;
+    outline: none;
+    border: none !important;
+}
+
+textarea {
+    display: block;
+    outline: none;
+}
+
+    textarea:focus, input:focus {
+        border-color: transparent !important;
+    }
+
+button {
+    outline: none !important;
+    border: none;
+    background: transparent;
+}
+
+    button:hover {
+        cursor: pointer;
+    }
+
+iframe {
+    border: none !important;
+}
+
+
+
+.limiter {
+    width: 100%;
+    margin: 0 auto;
+}
+
+.footer {
+    display: none;
+}
+
+.container-table100 {
+    width: 100%;
+    background: #d1d1d1;
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    min-height: 0px !important;
+}
+
+.wrap-table100 {
+    width: 1300px;
+}
+
+table {
+    width: 100%;
+    background-color: #fff;
+}
+
+th, td {
+    font-weight: unset;
+    padding-right: 10px;
+}
+
+.column100 {
+    width: 130px;
+    padding-left: 25px;
+}
+
+    .column100.column1 {
+        width: 265px;
+        padding-left: 42px;
+    }
+
+.row100.head th {
+    padding-top: 24px;
+    padding-bottom: 20px;
+}
+
+.row100 td {
+    padding-top: 18px;
+    padding-bottom: 14px;
+}
+
+
+
+.table100.ver6 {
+    border-radius: 16px;
+    overflow: hidden;
+    background: #7918f2;
+    background: -webkit-linear-gradient(-68deg, #ac32e4, #4801ff);
+    background: -o-linear-gradient(-68deg, #ac32e4, #4801ff);
+    background: -moz-linear-gradient(-68deg, #ac32e4, #4801ff);
+    background: linear-gradient(-68deg, #ac32e4, #4801ff);
+}
+
+    .table100.ver6 table {
+        background-color: transparent;
+    }
+
+    input {
+        display: block;
+        outline: none;
+        border: none !important;
+        width: 35% !important;
+        display: inline-block !important;
+        margin: 5px;
+    }
+
+    .table100.ver6 td {
+        font-family: Montserrat-Regular;
+        font-size: 14px;
+        color: #fff;
+        line-height: 1.4;
+    }
+
+    .table100.ver6 th {
+        font-family: Montserrat-Medium;
+        font-size: 12px;
+        color: #fff;
+        line-height: 1.4;
+        text-transform: uppercase;
+        background-color: rgba(255,255,255,0.32);
+    }
+
+    .table100.ver6 .row100:hover td {
+        background-color: rgba(255,255,255,0.1);
+    }
+
+    .table100.ver6 .hov-column-ver6 {
+        background-color: rgba(255,255,255,0.1);
+    }
+
+
+    .table100.ver6 .row100 td:hover {
+        background-color: rgba(255,255,255,0.2);
+    }
+
+    .user_input {
+        padding: 8px;
+        display: block;
+        border: none;
+        border: 1px solid #ccc !important;
+        width: 100%;
+    }
+
+</style>
+<div class="text-center">
+    <h1 class="display-4">Chương trình quản lý sinh viên</h1>
+</div>
+
+<input id="id" class="user_input" placeholder="Student ID" />
+<input id="first" class="user_input" placeholder="First Name" />
+<input id="last" class="user_input" placeholder="Last Name" />
+<input id="email" class="user_input" placeholder="Email" />
+<input id="math" class="user_input" placeholder="Math" />
+<input id="physics" class="user_input" placeholder="Physics" />
+<input id="chemistry" class="user_input" placeholder="Chemistry" />
+
+<button onclick="modify('add')">Thêm</button>
+<button onclick="modify('delete')">Xóa</button>
+<button onclick="modify('modify')">Sửa</button>
+
+<div class="container-table100">
+    <div class="table100 ver6 m-b-110">
+        <table data-vertable="ver6">
+            <thead>
+                <tr class="row100 head">
+                    <th class="column100 column1" data-column="column1">Student ID</th>
+                    <th class="column100 column2" data-column="column2">First Name</th>
+                    <th class="column100 column3" data-column="column3">Last Name</th>
+                    <th class="column100 column4" data-column="column4">Email</th>
+                    <th class="column100 column5" data-column="column5">Math</th>
+                    <th class="column100 column6" data-column="column6">Physic</th>
+                    <th class="column100 column7" data-column="column7">Chemistry</th>
+                </tr>
+            </thead>
+            <tbody id="container"></tbody>
+        </table>
+    </div>
+</div>
+
+<script>
+    const url = "http://localhost:8089/docker-api/students";
+
+    let students = [];
+
+    // làm mới lại bảng
+    function _updateTable() {
+        let container = document.getElementById("container");
+        container.innerHTML = '';
+        for (let student of students) {
+            container.innerHTML += `
+                <tr class="row100">
+                    <td class="column100 column1" data-column="column1">` + student.id + `</td>
+                    <td class="column100 column2" data-column="column2">` + student.firstName + `</td>
+                    <td class="column100 column3" data-column="column3">` + student.lastName + `</td>
+                    <td class="column100 column4" data-column="column4">` + student.email + `</td>
+                    <td class="column100 column5" data-column="column5">` + student.math + `</td>
+                    <td class="column100 column6" data-column="column6">` + student.physics + `</td>
+                    <td class="column100 column7" data-column="column7">` + student.chemistry + `</td>
+                </tr>
+            `;
+        }
+    }
+
+    // get all student từ database
+    function _fetchStudents() {
+        fetch(url)
+            .then((resp) => resp.json())
+            .then(data => {
+                students = data;
+                // console.log(data);
+                _updateTable();
+            })
+            .catch(function (error) {
+                console.log(error);
+            });
+    }
+
+    function _addStudent(student) {
+        fetch(url, {
+            method: 'POST',
+            body: JSON.stringify(student),
+            headers: {
+                'Content-Type': 'application/json',
+            },
+        }).then(res => res.json())
+            .then(data => console.log(data))
+            .then(_fetchStudents).catch(function (error) {
+                alert("Dữ liệu phải ở định dạng hợp lệ");
+            });
+    }
+
+    function _editStudent(student) {
+        fetch(url, {
+            method: "PUT",
+            body: JSON.stringify(student),
+            headers: {
+                'Content-Type': 'application/json',
+            },
+        }).then(res => res.json())
+            .then(data => console.log(data))
+            .then(_fetchStudents);
+    }
+
+    function _deleteStudent(id) {
+        fetch(`${url}/${id}`, {
+            method: "DELETE",
+        }).then(_fetchStudents)
+            .catch(function (error) {
+                alert("Không tìm thấy ID cần xóa")
+            });
+    }
+
+    // các thao tác
+    function modify(action) {
+        let id = document.getElementById("id").value;
+        let first = document.getElementById("first").value;
+        let last = document.getElementById("last").value;
+        let email = document.getElementById("email").value;
+        let math = document.getElementById("math").value;
+        let physics = document.getElementById("physics").value;
+        let chemistry = document.getElementById("chemistry").value;
+
+        //console.log(`
+        //    {
+        //        "action": ` + action + `,
+        //        "id": ` + id + `,
+        //        "firstName": ` + first + `,
+        //        "lastName": ` + last + `,
+        //        "email": ` + email + `,
+        //        "math": ` + math + `,
+        //        "physic": ` + physics + `,
+        //        "chemistry": ` + chemistry + `
+        //    }
+        //`);
+
+        let aStudent = {
+            id: id,
+            firstName: first,
+            lastName: last,
+            email: email,
+            math: math,
+            physics: physics,
+            chemistry: chemistry,
+        };
+
+        if (action === "add") {
+            _addStudent(aStudent);
+        }
+
+        if (action === "modify") {
+            _editStudent(aStudent);
+        }
+
+        if (action === "delete") {
+            _deleteStudent(id);
+        }
+    }
+
+    // _updateTable();
+</script>
